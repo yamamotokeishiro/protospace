@@ -8,9 +8,9 @@
           .proto-new-title
             = f.text_field :title, required: true, autofocus: true, placeholder: "Input Title"
       .row
-        .col-md-12
+        .col-md-12.fileinput.fileinput-new
           %h4 Main Thumbnail
-          .cover-image-upload#main_image_uploader
+          .fileinput-preview.thumbnail.cover-image-upload#main_image_uploader
             = f.fields_for :captured_images do |image|
               %img
               = image.file_field :content, required: true
