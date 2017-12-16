@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function(){
     $('input').change(function(){
         var file = $(this).prop('files')[0];
         var image_find = $(this).parent().find('img');
