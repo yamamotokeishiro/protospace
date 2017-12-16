@@ -55,6 +55,10 @@ body {
   }
 }
 
+.navbar-btn {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 
 
 /* -- Buttons sizes -------------------------------- */
@@ -633,4 +637,19 @@ body {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
+}
+
+/* -- upload thumbnail ------------------------------------ */
+.thumbnail {
+  overflow: hidden;
+    img {
+      width: 100%;
+    }
+}
+
+.image-upload {
+  overflow: hidden;
+    img {
+      width: 100%;
+    }
 }
