@@ -1,4 +1,10 @@
 .col-sm-4.col-md-3.proto-content
+  - if user_signed_in? && prototype.user_id == current_user.id
+    .dropdown.drop_menu_location
+      %input{ "type" => "button", "id" => "dropdownMenu", "class" => "btn btn-default dropdown-toggle", "value" => "ACTION", "data-toggle" => "dropdown" }
+        %ul.dropdown-menu
+          %li
+            = link_to 'Delete', prototype_path(prototype), method: 'delete'
   .thumbnail
     = link_to image_tag(prototype.set_main_thumbnail), prototype_path(prototype)
     .caption
