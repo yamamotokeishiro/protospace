@@ -30,6 +30,10 @@ class PrototypesController < ApplicationController
     redirect_to root_path, notice: "削除しました"
   end
 
+  def edit
+    set_prototype
+  end
+
   private
 
   def set_prototype
