@@ -16,13 +16,21 @@ class PrototypesController < ApplicationController
       redirect_to :root, notice: 'New prototype was successfully created'
     else
       redirect_to ({ action: new }), alert: 'YNew prototype was unsuccessfully created'
-     end
+    end
   end
 
   def show
     @prototype = Prototype.find(params[:id])
     @comments = @prototype.comments
     @comment = Comment.new
+  end
+
+  def destroy
+    prototype = Prototype.find(params[:id])
+    if prototype.user_id = current_user.id
+      prototype.destroy
+    end
+    redirect_to root_path, notice: "削除しました"
   end
 
   private

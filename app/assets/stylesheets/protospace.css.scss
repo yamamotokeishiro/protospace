@@ -55,7 +55,16 @@ body {
   }
 }
 
+.navbar-btn {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 
+.drop_menu_location {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
 
 /* -- Buttons sizes -------------------------------- */
 .btn {
@@ -676,4 +685,17 @@ body {
 
 .media-body {
   padding: 5px 0 0 15px;
+/* -- upload thumbnail ------------------------------------ */
+.thumbnail {
+  overflow: hidden;
+    img {
+      width: 100%;
+    }
+}
+
+.image-upload {
+  overflow: hidden;
+    img {
+      width: 100%;
+    }
 }
