@@ -37,3 +37,26 @@
           %a{href: "#", class: "btn btn-default"} iPad
         %li
           %a{href: "#", class: "btn btn-default"} wireframe
+  .row.proto-comments
+    %h4.col-md-12
+      Comments
+      %span.num
+        = "(#{@comments.length})"
+    #comment_area.col-md-8
+      #comment_list
+        -if @comments
+          - @comments.each do |comment|
+            .media
+              .media-left
+                = image_tag(comment.user.avatar, class: "user_avatar")
+                = link_to ""
+              .media-body
+                %h4.media-heading#top-aligned-media= comment.user.name
+                %p= comment.text
+      = form_for [@prototype,@comment] do |f|
+        %h4 Write a comment
+        .row
+          .form-group.col-md-10
+            = f.text_area :text
+          .form-group.col-md-2
+            = f.submit "COMMENT", class: "comment-submit"
