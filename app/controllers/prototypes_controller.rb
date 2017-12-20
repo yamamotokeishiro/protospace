@@ -33,6 +33,19 @@ class PrototypesController < ApplicationController
     redirect_to root_path, notice: "削除しました"
   end
 
+  def edit
+    set_prototype
+  end
+
+  def update
+    set_prototype
+    if @prototype.update(prototype_params)
+      redirect_to :root
+    else
+      render :edit
+    end
+  end
+
   private
 
   def set_prototype

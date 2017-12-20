@@ -5,6 +5,8 @@
         %ul.dropdown-menu
           %li
             = link_to 'Delete', prototype_path(prototype), method: 'delete'
+          %li
+            = link_to 'Edit', edit_prototype_path(prototype), method: 'get'
   .thumbnail
     = link_to image_tag(prototype.set_main_thumbnail), prototype_path(prototype)
     .caption
