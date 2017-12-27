@@ -22,7 +22,7 @@ class Prototype < ActiveRecord::Base
     created_at.strftime('%b %d %a')
   end
 
-  def likes_user(user_id)
-    likes.find_by(user_id: user_id)
+  def likes_user(user)
+    likes.find_by(user_id: user)
   end
 end
