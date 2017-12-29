@@ -21,6 +21,7 @@ class PrototypesController < ApplicationController
 
   def show
     @prototype = Prototype.find(params[:id])
+    @likes = Like.where(prototype_id: params[:id])
     @comments = @prototype.comments
     @comment = Comment.new
   end
