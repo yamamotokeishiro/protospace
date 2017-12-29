@@ -22,6 +22,8 @@ class PrototypesController < ApplicationController
   def show
     @prototype = Prototype.find(params[:id])
     @likes = Like.where(prototype_id: params[:id])
+    @comments = @prototype.comments
+    @comment = Comment.new
   end
 
   def destroy
@@ -30,6 +32,19 @@ class PrototypesController < ApplicationController
       prototype.destroy
     end
     redirect_to root_path, notice: "削除しました"
+  end
+
+  def edit
+    set_prototype
+  end
+
+  def update
+    set_prototype
+    if @prototype.update(prototype_params)
+      redirect_to :root
+    else
+      render :edit
+    end
   end
 
   private
