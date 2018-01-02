@@ -14,8 +14,8 @@
 
 .container.proto-list
   .row
-    = render partial: 'prototypes/prototype', collection: @popular, as: :prototype
+    = render partial: 'prototype_newest', collection: @prototypes, as: :prototype
 
 .text-center
   %ul.pagination
-    = paginate(@popular)
+    = paginate(@prototypes)
