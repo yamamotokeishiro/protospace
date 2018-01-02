@@ -3,6 +3,7 @@ class PrototypesController < ApplicationController
 
   def index
     @prototypes = Prototype.order("created_at ASC").page(params[:page]).per(4)
+    @popular = Prototype.order('likes_count DESC').page(params[:page]).per(4)
   end
 
   def new
@@ -20,7 +21,6 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
     @likes = Like.where(prototype_id: params[:id])
     @comments = @prototype.comments
     @comment = Comment.new

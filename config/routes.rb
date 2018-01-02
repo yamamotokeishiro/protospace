@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :prototypes, only: [:index, :new, :create, :show, :destroy, :edit] do
     resources :comments, only: [:create]
   end
+  get 'newest', to: 'newest#index'
   resources :users, only: [:show, :edit, :update]
 end
