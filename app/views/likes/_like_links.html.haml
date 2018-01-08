@@ -1,0 +1,11 @@
+%div.like-link{id: "like-link-#{prototype.id}"}
+  - if current_user.likes.find_by(prototype_id: prototype.id)
+    = link_to prototype_like_path(prototype_id: prototype.id, id: prototype.id), method: :delete, remote: true do
+      .btn.btn-default.heart{id: "heart-#{prototype.id}"}
+        = image_tag("icon_red_heart.svg")
+        = prototype.likes.count.to_s
+  - else
+    = link_to prototype_likes_path(prototype_id: prototype.id, id: prototype.id), method: :post, remote: true do
+      .btn.btn-default.heart{id: "heart-#{prototype.id}"}
+        = image_tag("icon_heart.svg")
+        = prototype.likes.count.to_s

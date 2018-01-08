@@ -2,7 +2,8 @@ class PrototypesController < ApplicationController
   before_action :set_prototype, only: :show
 
   def index
-    @prototypes = Prototype.all
+    @prototypes = Prototype.order("created_at ASC").page(params[:page]).per(4)
+    @popular = Prototype.order('likes_count DESC').page(params[:page]).per(4)
   end
 
   def new
@@ -20,7 +21,7 @@ class PrototypesController < ApplicationController
   end
 
   def show
-    @prototype = Prototype.find(params[:id])
+    @likes = Like.where(prototype_id: params[:id])
     @comments = @prototype.comments
     @comment = Comment.new
   end
