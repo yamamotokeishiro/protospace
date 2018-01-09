@@ -9,9 +9,11 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
+    @tags = Tag.new
   end
 
   def create
+    binding.pry
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
@@ -22,6 +24,7 @@ class PrototypesController < ApplicationController
 
   def show
     @likes = Like.where(prototype_id: params[:id])
+    @tags = @prototype.tags
     @comments = @prototype.comments
     @comment = Comment.new
   end
@@ -59,7 +62,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:content, :status],
+      tags_attributes: [:id, :name]
     )
   end
 end
