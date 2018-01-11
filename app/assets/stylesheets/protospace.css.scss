@@ -610,7 +610,32 @@ body {
   }
 }
 
-
+/* -- tags ------------------------------------ */
+.tags-list ul {
+  overflow: hidden;
+  padding: 0;
+  margin: 30px 0;
+}
+.tags-list li {
+  margin-bottom: 10px;
+  list-style: none;
+}
+.tags-list li a {
+  display: block;
+  text-align: left;
+  padding: 20px;
+  border-radius: 3px;
+}
+.tag-show {
+  margin: 20px 15px 40px;
+}
+.tag-show__tagbox {
+  background: #FFF;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  text-align: center;
+  padding: 15px 20px;
+}
 .tag-project {
   height: 10px;
   text-align: center;

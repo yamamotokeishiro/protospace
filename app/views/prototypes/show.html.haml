@@ -14,15 +14,6 @@
               = @prototype.user.position
     .col-md-6.clearfix
       .likes-box
-        -# - if @prototype.likes_user(current_user)
-        -#   #like-button
-        -#   = image_tag("icon_heart_red.svg")
-        -#   = likes_counter(@likes)
-        -# - else
-        -#   #like-button
-        -#     = image_tag("icon_heart.svg")
-        -#     #like-sum
-        -#     = likes_counter(@likes)
         = render 'likes/like_links', prototype: @prototype, likes: @likes, like: @like
   .row
     .col-md-9.image-box
@@ -44,10 +35,10 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
+        - @tags.each do |tag|
+          %li
+            = link_to tag_path(tag), class: "btn btn-default" do
+              = tag.name
   .row.proto-comments
     %h4.col-md-12
       Comments

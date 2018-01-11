@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+  before_action :set_prototype, only: [:show, :edit, :update]
 
   def index
     @prototypes = Prototype.order("created_at ASC").page(params[:page]).per(4)
@@ -9,9 +9,11 @@ class PrototypesController < ApplicationController
   def new
     @prototype = Prototype.new
     @prototype.captured_images.build
+    @tags = Tag.new
   end
 
   def create
+    binding.pry
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
@@ -22,6 +24,7 @@ class PrototypesController < ApplicationController
 
   def show
     @likes = Like.where(prototype_id: params[:id])
+    @tags = @prototype.tags
     @comments = @prototype.comments
     @comment = Comment.new
   end
@@ -35,11 +38,21 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    set_prototype
+    # binding.pry
+    @tag_list = @prototype.tags.name
+    @captures = @prototype.captured_images
+    @captures.each do |capture|
+      if capture.status == "main"
+        @main_image = capture
+      else
+        @sub_image = capture
+      end
+    end
+    return @main_image
+    return @sub_image
   end
 
   def update
-    set_prototype
     if @prototype.update(prototype_params)
       redirect_to :root
     else
@@ -59,7 +72,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:id, :content, :status],
+      tags_attributes: [:id, :name, :_destroy]
     )
   end
 end
