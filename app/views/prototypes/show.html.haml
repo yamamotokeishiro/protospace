@@ -38,7 +38,7 @@
       %ul.proto-tag-list.list-inline
         - @tags.each do |tag|
           %li
-            %a{href: "#", class: "btn btn-default"}
+            = link_to tag_path(tag), class: "btn btn-default" do
               = tag.name
   .row.proto-comments
     %h4.col-md-12

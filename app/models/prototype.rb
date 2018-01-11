@@ -2,16 +2,23 @@ class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :captured_images, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :tags, through: :prototype_tags
+  has_many :tags, through: :prototype_tags, dependent: :destroy
   has_many :prototype_tags, dependent: :destroy
   has_many :comments
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
-  accepts_nested_attributes_for :tags
+  accepts_nested_attributes_for :tags, reject_if: :reject_tags, allow_destroy: true
 
   validates :title,
             :catch_copy,
             :concept,
             presence: true
+
+  def reject_tags(attributes)
+    exists = attributes[:id].present?
+    empty = attributes[:name].blank?
+    attributes.merge!(_destroy: 1) if exists && empty
+    !exists && empty
+  end
 
   def reject_sub_images(attributed)
     attributed['content'].blank?
