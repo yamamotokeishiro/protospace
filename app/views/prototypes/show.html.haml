@@ -9,7 +9,6 @@
           %h4#top-aligned-media.media-heading
             = @prototype.title
           .proto-user
-            by
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
@@ -51,7 +50,7 @@
           - @comments.each do |comment|
             .media
               .media-left
-                = image_tag(comment.user.avatar, class: "user_avatar")
+                = image_tag(comment.user.avatar)
                 = link_to ""
               .media-body
                 %h4.media-heading#top-aligned-media= comment.user.name
