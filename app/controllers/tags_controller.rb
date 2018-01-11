@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tag_list = Tag.all
   end
 
   def new
@@ -8,12 +8,13 @@ class TagsController < ApplicationController
   end
 
   def create
-    binding.pry
     @tag = Tag.create(tag_params)
   end
 
   def show
-
+    # binding.pry
+    @tag = Tag.find(params[:id])
+    @prototypes = Prototype.joins(:tags).includes(:tags).order('tags.name').page(params[:page]).per(4)
   end
 
   def destroy

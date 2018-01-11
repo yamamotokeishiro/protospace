@@ -9,13 +9,17 @@
         %li.btn-default.btn-popular
           = link_to "Popular", "/"
         %li.btn-default.btn-popular
-          = link_to "Newest", "newest"
+          = link_to "Newest", "/newest"
       = link_to "VIEW TAGS", "/tags", class: "btn btn-default col-lg-1"
 
 .container.proto-list
   .row
-    = render partial: 'prototype_newest', collection: @prototypes, as: :prototype
+    .tag-show
+      .tag-show__tagbox
+        = link_to @tag.name, "/tags/#{@tag.id}"
+
+    = render partial: 'prototypes/prototype', collection: @prototypes, as: :prototype
 
 .text-center
-  %ul.pagination
-    = paginate(@prototypes)
+  -# %ul.pagination
+  -#   = paginate(@prototype)
