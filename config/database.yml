@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: root
   password:
-  socket: /var/lib/mysql/mysql.sock
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
@@ -52,3 +52,4 @@ production:
   database: protospace-in-dev_production
   username: protospace-in-dev
   password: <%= ENV['PROTOSPACE-IN-DEV_DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
