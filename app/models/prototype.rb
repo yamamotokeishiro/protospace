@@ -8,6 +8,8 @@ class Prototype < ActiveRecord::Base
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
   accepts_nested_attributes_for :tags, reject_if: :reject_tags, allow_destroy: true
 
+  has_one :main_image, -> { where(status: 0) }, class_name: "CapturedImage"
+
   validates :title,
             :catch_copy,
             :concept,
@@ -26,6 +28,13 @@ class Prototype < ActiveRecord::Base
 
   def set_main_thumbnail
     captured_images.main.first.content
+  end
+
+  Max_sub_image = 3
+  def set_sub_thumbnails
+    sub_images = captured_images.sub
+    Max_sub_image.times { |i| sub_images[i] ||= captured_images.build(status: "sub") }
+    sub_images
   end
 
   def posted_date

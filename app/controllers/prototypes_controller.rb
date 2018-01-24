@@ -37,18 +37,15 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @tag_list = @prototype.tags.name
     @captures = @prototype.captured_images
+    @sub_images = @prototype.set_sub_thumbnails
     @captures.each do |capture|
       if capture.status == "main"
         @main_image = capture
-      else
-        @sub_image = capture
       end
     end
     return @main_image
-    return @sub_image
   end
 
   def update
